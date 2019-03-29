@@ -3,25 +3,24 @@
 <head>
 <title>SHOP 管理中心 - 属性管理 </title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link href="{{ URL::asset('styles/general.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ URL::asset('styles/main.css') }}" rel="stylesheet" type="text/css" />
+<link href="styles/general.css" rel="stylesheet" type="text/css" />
+<link href="styles/main.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 
 <h1>
-<span class="action-span"><a href="{{ URL('attribute/list') }}">商品属性</a></span>
-<span class="action-span1"><a href="{{ URL('index/main') }}">SHOP 管理中心</a> </span><span id="search_id" class="action-span1"> - 编辑属性 </span>
+<span class="action-span"><a href="attribute.php?act=list">商品属性</a></span>
+<span class="action-span1"><a href="index.php?act=main">SHOP 管理中心</a> </span><span id="search_id" class="action-span1"> - 编辑属性 </span>
 <div style="clear:both"></div>
 </h1>
 
 <div class="main-div">
-  <form action="attr_edit" method="post" name="theForm" onsubmit="return validate();">
+  <form action="attribute.php" method="post" name="theForm" onsubmit="return validate();">
   <table width="100%" id="general-table">
-      @csrf
       <tbody><tr>
         <td class="label">属性名称：</td>
         <td>
-          <input type="text" name="attr_name" value="{{ $data->attr_name }}" size="30">
+          <input type="text" name="attr_name" value="作者" size="30">
           <span class="require-field">*</span>        </td>
       </tr>
       <tr>
@@ -29,12 +28,7 @@
         <td>
           <select name="cat_id" onchange="onChangeGoodsType(this.value)">
           <option value="0">请选择...</option>
-
-              @foreach($list as $v)
-                  <option value="{{ $v->cat_id }}">{{ $v->cat_name }}</option>
-              @endforeach
-
-          </select> <span class="require-field">*</span>        </td>
+            <option value="1" selected="true">书</option><option value="2">音乐</option><option value="3">电影</option><option value="4">手机</option><option value="5">笔记本电脑</option><option value="6">数码相机</option><option value="7">数码摄像机</option><option value="8">化妆品</option><option value="9">精品手机</option><option value="10">我的商品</option>          </select> <span class="require-field">*</span>        </td>
       </tr>
       <tr id="attrGroups" style="display: none;">
         <td class="label">属性分组：</td>
@@ -87,7 +81,7 @@
       </tr>
       </tbody></table>
     <input type="hidden" name="act" value="update">
-    <input type="hidden" name="attr_id" value="{{$data->attr_id}}">
+    <input type="hidden" name="attr_id" value="1">
   </form>
 </div>
 

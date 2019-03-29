@@ -3,20 +3,19 @@
 <head>
 <title>SHOP 管理中心 - 属性管理 </title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link href="{{ URL::asset('styles/general.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ URL::asset('styles/main.css') }}" rel="stylesheet" type="text/css" />
+<link href="styles/general.css" rel="stylesheet" type="text/css" />
+<link href="styles/main.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 
 <h1>
-<span class="action-span"><a href="{{ URL('attribute/list') }}">商品属性</a></span>
-<span class="action-span1"><a href="{{ URL('index/main') }}">SHOP 管理中心</a> </span><span id="search_id" class="action-span1"> - 添加属性 </span>
+<span class="action-span"><a href="attribute.php?act=list">商品属性</a></span>
+<span class="action-span1"><a href="index.php?act=main">SHOP 管理中心</a> </span><span id="search_id" class="action-span1"> - 添加属性 </span>
 <div style="clear:both"></div>
 </h1>
 
 <div class="main-div">
-  <form action="attr_add" method="post" name="theForm" onsubmit="return validate();">
-      @csrf
+  <form action="attribute.php" method="post" name="theForm" onsubmit="return validate();">
   <table width="100%" id="general-table">
       <tbody><tr>
         <td class="label">属性名称：</td>
@@ -29,10 +28,7 @@
         <td>
           <select name="cat_id" onchange="onChangeGoodsType(this.value)">
           <option value="0">请选择...</option>
-              @foreach($data as $v)
-            <option value="{{ $v->cat_id }}">{{ $v->cat_name }}</option>
-              @endforeach
-          </select> <span class="require-field">*</span>        </td>
+            <option value="1">书</option><option value="2">音乐</option><option value="3">电影</option><option value="4">手机</option><option value="5">笔记本电脑</option><option value="6">数码相机</option><option value="7">数码摄像机</option><option value="8">化妆品</option><option value="9">精品手机</option><option value="10">我的商品</option>          </select> <span class="require-field">*</span>        </td>
       </tr>
       <tr id="attrGroups" style="display: none;">
         <td class="label">属性分组：</td>
@@ -42,7 +38,7 @@
         </td>
       </tr>
       <tr>
-        <td class="label"><a href="javascript:showNotice('noticeindex');" title="点击此处查看提示信息"><img src="{{ URL('images/notice.gif') }}" width="16" height="16" border="0" alt="点击此处查看提示信息"></a>能否进行检索：</td>
+        <td class="label"><a href="javascript:showNotice('noticeindex');" title="点击此处查看提示信息"><img src="images/notice.gif" width="16" height="16" border="0" alt="点击此处查看提示信息"></a>能否进行检索：</td>
         <td>
           <input type="radio" name="attr_index" value="0" checked="true">
           不需要检索          <input type="radio" name="attr_index" value="1">
@@ -56,7 +52,7 @@
           <input type="radio" name="is_linked" value="0" checked="true"> 否          <input type="radio" name="is_linked" value="1"> 是        </td>
       </tr>
       <tr>
-        <td class="label"><a href="javascript:showNotice('noticeAttrType');" title="点击此处查看提示信息"><img src="{{ URL('images/notice.gif') }}" width="16" height="16" border="0" alt="点击此处查看提示信息"></a>属性是否可选</td>
+        <td class="label"><a href="javascript:showNotice('noticeAttrType');" title="点击此处查看提示信息"><img src="images/notice.gif" width="16" height="16" border="0" alt="点击此处查看提示信息"></a>属性是否可选</td>
         <td>
           <input type="radio" name="attr_type" value="0" checked="true"> 唯一属性          <input type="radio" name="attr_type" value="1"> 单选属性          <input type="radio" name="attr_type" value="2"> 复选属性          <br><span class="notice-span" style="display:block" id="noticeAttrType">选择"单选/复选属性"时，可以对商品该属性设置多个值，同时还能对不同属性值指定不同的价格加价，用户购买商品时需要选定具体的属性值。选择"唯一属性"时，商品的该属性值只能设置一个值，用户只能查看该值。</span>
         </td>
@@ -85,6 +81,7 @@
       </tr>
       </tbody></table>
     <input type="hidden" name="act" value="insert">
+    <input type="hidden" name="attr_id" value="0">
   </form>
 </div>
 
